@@ -7,7 +7,7 @@ class Pizza
     private $weight;
     private $volume;
 
-    function setVolume(new_volume) {
+    function setVolume($new_volume) {
         $this->volume = new_volume;
     }
 
@@ -15,7 +15,7 @@ class Pizza
       return $this->volume;
     }
 
-    function setLength(new_length) {
+    function setLength($new_length) {
         $this->length = new_length;
     }
 
@@ -23,7 +23,7 @@ class Pizza
         return $this->length;
     }
 
-    function setWidth(new_width) {
+    function setWidth($new_width) {
         $this->width = new_width;
     }
 
@@ -31,7 +31,7 @@ class Pizza
         return $this->width;
     }
 
-    function setHeight(new_height) {
+    function setHeight($new_height) {
         $this->height = new_height;
     }
 
@@ -39,7 +39,7 @@ class Pizza
         return $this->height;
     }
 
-    function setWeight(new_weight) {
+    function setWeight($new_weight) {
         $this->weight = new_weight;
     }
 
@@ -55,20 +55,22 @@ class Pizza
         $this->weight = $weight;
     }
 
-    function volume($length, $width, $height)
+    function volume()
     {
         $volume = (($this->length) * ($this->width) * ($this->height));
         return $volume;
     }
 
-    function costToShip($volume, $weight)
+    function costToShip()
     {
-        $cost = ((($this->$volume) / 5) + (($this->weight) * .25));
+        $cost = ($this->volume() + $this->weight);
+        return $cost;
     }
 
 }
 
-$pizza1 =  new Pizza(18, 18, 1, 2);//collect user input here instead of hardcoding in numbers
+$pizza1 =  new Pizza($_GET["length"], $_GET["width"], $_GET["height"], $_GET["weight"]);
+//collect user input here instead of hardcoding in numbers
 
 
 ?>
@@ -83,18 +85,25 @@ $pizza1 =  new Pizza(18, 18, 1, 2);//collect user input here instead of hardcodi
   <ul>
     <?php
       $length = $pizza1->getLength();
+      $width = $pizza1->getWidth();
+      $height = $pizza1->getHeight();
+      $weight = $pizza1->getWeight();
+      $volume = $pizza1->volume();
+      $cost = $pizza1->costToShip();
 
+      echo "<h3>Your Dimensions are</h3>";
+      echo "<ul>";
+      echo "<li>$length</li>";
+      echo "<li>$width</li>";
+      echo "<li>$height</li>";
+      echo "<li>$weight</li>";
+      echo "<h3>Your Pizza Box Volume is:</h3>";
+      echo "<li>$volume</li>";
+      echo "<h3>Your total cost is:</h3>";
+      echo "<li>$cost</li>";
+      echo "</ul>";
 
-    $make_model = $car->getMakeModel();
-    $price = $car->getPrice();
-    echo "<li>$make_model</li>";
-    echo "<ul>";
-        echo "<li> $price </li>";
-        echo "<li> $car->miles </li>";
-    echo "</ul>";
     ?>
-
-
   </ul>
 </body>
 </html>
