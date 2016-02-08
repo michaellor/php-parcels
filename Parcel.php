@@ -63,15 +63,18 @@ class Pizza
 
     function costToShip()
     {
-        $cost = ($this->volume() + $this->weight);
+        $cost = ($this->volume() + ($this->weight)/2);
         return $cost;
     }
-
 }
 
 $pizza1 =  new Pizza($_GET["length"], $_GET["width"], $_GET["height"], $_GET["weight"]);
 //collect user input here instead of hardcoding in numbers
 
+if (empty ($_GET["length"] && $_GET["width"] && $_GET["height"] && $_GET["weight"])) {
+  echo "Your pizza is imaginary. Please enter real dimensions and/or weight";
+  exit();
+}
 
 ?>
 
